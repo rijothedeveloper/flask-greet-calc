@@ -1,19 +1,24 @@
 # Put your app in here.
-from operations import *
 
-@app.route('add')
+from flask import Flask, request
+from operations import add, sub, mult, div
+
+app = Flask(__name__)
+
+@app.route('/add')
 def add_route():
-    return add(request.args["a"], request.args["b"])
+    result = add(int(request.args.get("a")), int(request.args.get("b")))
+    return str(result)
 
-@app.route('sub')
+@app.route('/sub')
 def sub_route():
-    return sub(request.args["a"], request.args["b"])
+    return str(sub(int(request.args.get("a")), int(request.args.get("b"))))
 
-@app.route('mult')
+@app.route('/mult')
 def mult_route():
-    return mult(request.args["a"], request.args["b"])
+    return str(mult(int(request.args.get("a")), int(request.args.get("b"))))
 
-@app.route('div')
+@app.route('/div')
 def div_route():
-    return div(request.args["a"], request.args["b"])
+    return str(div(int(request.args.get("a")), int(request.args.get("b"))))
 
