@@ -22,3 +22,20 @@ def mult_route():
 def div_route():
     return str(div(int(request.args.get("a")), int(request.args.get("b"))))
 
+
+
+# part 2
+
+operations = {"add": add,
+              "sub": sub,
+              "mult": mult,
+              "div": div }
+
+@app.route("/math/<oper>")
+def math_operation(oper):
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    result = operations[oper](a, b)
+    return str(result)
+
+ 
